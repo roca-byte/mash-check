@@ -1,5 +1,7 @@
 # MASH Check
 
+[![QualityOS](https://img.shields.io/badge/QualityOS-calidad_en_planta-0f5c6e?style=flat-square)](https://github.com/roca-byte)
+
 PWA para cargar **planillas de control MASH** (Seguridad e Higiene) desde el celular y sacar un **reporte del día**. Pensada para uso personal en planta: botones grandes, pocos campos por pantalla y funcionamiento **sin conexión**.
 
 **App publicada:** https://quality-systems.github.io/mash-check/
