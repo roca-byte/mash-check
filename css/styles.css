@@ -218,6 +218,9 @@ input:focus, select:focus, textarea:focus {
 
 /* ---- inicio: ayudas ---- */
 .ayuda { font-size: 14px; color: var(--gris); margin: 4px 0 10px; }
+.marca-logo { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.marca-logo img { max-height: 56px; max-width: 150px; width: auto; object-fit: contain; background: #fff; border: 1px solid var(--borde); border-radius: 8px; padding: 5px; }
+.marca-logo img[hidden] { display: none; }
 #vista > .btn + .btn { margin-top: 8px; }
 
 /* ---- reporte (en pantalla) ---- */
@@ -235,6 +238,7 @@ input:focus, select:focus, textarea:focus {
 .reporte h3 small { font-weight: 400; color: var(--gris); }
 .reporte h4 { font-size: 14px; margin: 10px 0 4px; color: var(--verde); }
 .r-cab { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.r-cab .r-logo { max-height: 56px; max-width: 150px; width: auto; object-fit: contain; }
 .r-cab p { margin: 2px 0 0; font-size: 13px; color: var(--gris); }
 .r-fecha { font-size: 20px; font-weight: 700; white-space: nowrap; }
 .r-datos { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 14px; margin: 6px 0; }

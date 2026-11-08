@@ -7,8 +7,6 @@
  * que un reporte viejo se ve igual aunque la planilla se haya editado o borrado después.
  */
 const Report = (() => {
-  const EMPRESA = 'Empresa S.A.';
-
   function esc(texto) {
     const reemplazos = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
     return String(texto == null ? '' : texto).replace(/[&<>"']/g, (c) => reemplazos[c]);
@@ -149,13 +147,18 @@ const Report = (() => {
 
   function html(fecha, registros) {
     const quienes = nombres(registros);
+    const B = window.BRAND || {};
     const cuerpo = registros.length
       ? '<h2>Ítems a atender</h2>' + htmlProblemas(registros) + '<h2>Detalle</h2>' + registros.map(htmlRegistro).join('')
       : '<p class="vacio">No hay registros cargados este día.</p>';
+    // Si hay logo, el nombre de la empresa no se repite al lado: el logo ya la identifica.
+    const subtitulo = [B.logo ? '' : B.empresa, 'Seguridad e Higiene'].filter(Boolean).join(' · ');
 
     return '<article class="reporte">' +
-      '<header class="r-cab"><div><h1>Reporte MASH del día</h1>' +
-        '<p>' + esc(EMPRESA) + ' · Seguridad e Higiene</p></div>' +
+      '<header class="r-cab">' +
+        (B.logo ? '<img class="r-logo" src="' + esc(B.logo) + '" alt="' + esc(B.empresa || '') + '">' : '') +
+        '<div><h1>Reporte MASH del día</h1>' +
+        '<p>' + esc(subtitulo) + '</p></div>' +
         '<div class="r-fecha">' + fmtFecha(fecha) + '</div></header>' +
       '<p class="r-datos"><span><b>Planillas cargadas:</b> ' + registros.length + '</span>' +
         (quienes.length ? '<span><b>Control:</b> ' + esc(quienes.join(', ')) + '</span>' : '') + '</p>' +

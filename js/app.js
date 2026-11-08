@@ -83,6 +83,18 @@
       '<button class="btn" data-act="respaldo-importar">Restaurar respaldo</button>' +
       // Input de archivo escondido: el botón de arriba lo "toca" por nosotros (el original es feo e incómodo).
       '<input type="file" id="archivo-respaldo" accept=".json,application/json" hidden>' +
+      '<h2>Empresa</h2>' +
+      '<p class="ayuda">Nombre y logo que aparecen en el encabezado del reporte. Se guardan en este celular.</p>' +
+      '<div class="campo"><label>Nombre de la empresa</label>' +
+        '<input id="marca-empresa" value="' + esc(Marca.datos.empresa || '') + '" placeholder="Ej: Alimentos del Sur S.A." autocomplete="organization"></div>' +
+      '<div class="campo"><label>Logo de la empresa (opcional)</label>' +
+        '<div class="marca-logo">' +
+          '<img id="marca-logo-prev" alt="Logo cargado" ' + (Marca.datos.logo && Marca.datos.logo.d ? 'src="' + Marca.datos.logo.d + '"' : 'hidden') + '>' +
+          '<button class="btn chico" data-act="marca-logo-elegir">🖼️ <span id="marca-logo-txt">' + (Marca.datos.logo ? 'Cambiar logo' : 'Elegir logo') + '</span></button>' +
+          '<button class="btn chico" data-act="marca-quitar" ' + (Marca.datos.logo ? '' : 'hidden') + '>Quitar logo</button>' +
+        '</div>' +
+        '<input type="file" id="marca-logo" accept="image/*" hidden>' +
+      '</div>' +
       '<p class="version" id="version">' + esc(textoVersion) + '</p>';
   }
 
@@ -670,11 +682,21 @@
       case 'compartir': compartirResumen(); break;
       case 'respaldo-exportar': descargarRespaldo(); break;
       case 'respaldo-importar': document.getElementById('archivo-respaldo').click(); break;
+      case 'marca-logo-elegir': document.getElementById('marca-logo').click(); break;
+      case 'marca-quitar':
+        Marca.datos.logo = null;
+        Marca.guardar(); Marca.aplicar(); pintarInicio();
+        break;
     }
   });
 
   // Cada vez que se escribe en un campo, lo copiamos al borrador que corresponda.
   vista.addEventListener('input', (e) => {
+    if (e.target.id === 'marca-empresa') {
+      Marca.datos.empresa = e.target.value;
+      Marca.guardar(); Marca.aplicar();
+      return;
+    }
     if (estado.edicion) { entradaEditor(e.target); return; }
     const campo = e.target.dataset.campo;
     if (!campo || !estado.borrador) return;
@@ -686,6 +708,16 @@
 
   // Selector de día de la pantalla de inicio.
   vista.addEventListener('change', (e) => {
+    if (e.target.id === 'marca-logo' && e.target.files[0]) {
+      Marca.leerLogo(e.target.files[0], (logo) => {
+        if (!logo) { alert('No se pudo leer esa imagen.'); return; }
+        Marca.datos.logo = logo;
+        if (Marca.guardar()) { Marca.aplicar(); pintarInicio(); }
+        else alert('No hay espacio para guardar el logo. Probá con uno más chico.');
+      });
+      e.target.value = '';
+      return;
+    }
     if (e.target.id === 'archivo-respaldo' && e.target.files[0]) {
       restaurarRespaldo(e.target.files[0]);
       e.target.value = ''; // para poder elegir el mismo archivo otra vez
