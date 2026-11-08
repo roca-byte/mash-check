@@ -7,7 +7,7 @@
  *
  * Los DATOS (registros y planillas) no se guardan acá: viven en localStorage y no se tocan.
  */
-const VERSION = 'mash-check-v6';
+const VERSION = 'mash-check-v7';
 
 // Todo lo que la app necesita para arrancar sin red. RUTAS RELATIVAS: en GitHub Pages la app
 // está en /mash-check/ y una ruta como '/index.html' apuntaría a la raíz del dominio.
