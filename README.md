@@ -4,7 +4,7 @@
 
 PWA para cargar **planillas de control MASH** (Seguridad e Higiene) desde el celular y sacar un **reporte del día**. Pensada para uso personal en planta: botones grandes, pocos campos por pantalla y funcionamiento **sin conexión**.
 
-**App publicada:** https://quality-systems.github.io/mash-check/
+**App publicada:** https://roca-byte.github.io/mash-check/
 
 ## Características
 
@@ -20,6 +20,7 @@ PWA para cargar **planillas de control MASH** (Seguridad e Higiene) desde el cel
   - Resalta los **ítems a atender** (respuestas problemáticas) y lista aparte las casillas sin responder.
   - **Imprimir / PDF** (A4) o **compartir** como texto desde el celular.
 - **Backup JSON**: exportar e importar todos los datos (restaurar reemplaza todo y guarda lo anterior).
+- **Empresa y logo configurables**: en la pantalla de inicio se carga el nombre de la empresa y, opcionalmente, un logo. Se guardan solo en el dispositivo y se usan en el encabezado del reporte (si hay logo, reemplaza al nombre).
 - **Instalable y offline** gracias al service worker.
 
 ## Tecnologías
@@ -37,6 +38,7 @@ HTML + CSS + JavaScript puro, **sin frameworks, sin npm y sin paso de build**. S
 ├── js/
 │   ├── planillas-base.js   # Las planillas de fábrica como datos (PLANILLAS_BASE)
 │   ├── store.js            # Capa de datos, constructor de planillas y respaldo (Store)
+│   ├── marca.js            # Empresa y logo configurables (Marca)
 │   ├── report.js           # Reporte del día y texto para compartir (Report)
 │   └── app.js              # Pantallas y eventos
 ├── icons/                  # Íconos de la app
@@ -45,7 +47,7 @@ HTML + CSS + JavaScript puro, **sin frameworks, sin npm y sin paso de build**. S
 └── CLAUDE.md               # Contexto para agentes de IA
 ```
 
-Orden de carga de los scripts: `planillas-base` → `store` → `report` → `app`.
+Orden de carga de los scripts: `planillas-base` → `store` → `marca` → `report` → `app`.
 
 ## Uso
 
@@ -59,10 +61,11 @@ Abrir `http://localhost:8000`. En el celular, abrir la dirección publicada e in
 
 Flujo de trabajo:
 
-1. Elegir la planilla y la fecha.
-2. Completar cabecera e ítems → guardar.
-3. Revisar los registros del día (editar o borrar si hace falta).
-4. Generar el **reporte del día** → imprimir/PDF o compartir.
+1. En la pantalla de inicio, cargar el nombre de la empresa y el logo (opcional) en la sección **Empresa**.
+2. Elegir la planilla y la fecha.
+3. Completar cabecera e ítems → guardar.
+4. Revisar los registros del día (editar o borrar si hace falta).
+5. Generar el **reporte del día** → imprimir/PDF o compartir.
 
 ## Publicación
 

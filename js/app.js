@@ -86,7 +86,7 @@
       '<h2>Empresa</h2>' +
       '<p class="ayuda">Nombre y logo que aparecen en el encabezado del reporte. Se guardan en este celular.</p>' +
       '<div class="campo"><label>Nombre de la empresa</label>' +
-        '<input id="marca-empresa" value="' + esc(Marca.datos.empresa || '') + '" placeholder="Ej: Alimentos del Sur S.A." autocomplete="organization"></div>' +
+        '<input type="text" id="marca-empresa" value="' + esc(Marca.datos.empresa || '') + '" placeholder="Ej: Alimentos del Sur S.A." autocomplete="organization"></div>' +
       '<div class="campo"><label>Logo de la empresa (opcional)</label>' +
         '<div class="marca-logo">' +
           '<img id="marca-logo-prev" alt="Logo cargado" ' + (Marca.datos.logo && Marca.datos.logo.d ? 'src="' + Marca.datos.logo.d + '"' : 'hidden') + '>' +
