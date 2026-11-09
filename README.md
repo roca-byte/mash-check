@@ -6,7 +6,12 @@ App para completar las **planillas de control de Seguridad e Higiene** (MASH) de
 celular y sacar un **reporte del día**. Pensada para usarse en planta: botones grandes, pocos
 campos por pantalla y funciona **sin conexión**.
 
-**Abrir la app:** https://roca-byte.github.io/mash-check/
+**Abrir la app:** https://roca-byte.github.io/mash-check/ · [Video (2:30)](docs/video/mash-check-demo.mp4) · [Guía de uso](docs/GUIA.md)
+
+<p align="center"><img src="docs/img/demo.gif" alt="Recorrido: cargar un botiquín y ver el reporte del día" width="280"></p>
+
+> ¿Querés verla funcionando sin cargar nada? Mirá el [video](docs/video/mash-check-demo.mp4)
+> o la [guía con capturas](docs/GUIA.md): usan una empresa de ejemplo con datos inventados.
 
 ## Para qué sirve
 
@@ -17,9 +22,9 @@ arma un reporte que **resalta lo que hay que atender**.
 ## Qué podés hacer
 
 - **Planillas listas para usar**:
-  - Control de Botiquines (REG-04)
-  - Control de Tableros eléctricos (REG-09)
-  - Control de Absorbentes (REG-05)
+  - Control de Botiquines (REG-01)
+  - Control de Tableros eléctricos (REG-02)
+  - Control de Absorbentes (REG-03)
 - **Armar tus propias planillas**: crear, editar, duplicar y borrar planillas con sus
   secciones, columnas e ítems. Las columnas pueden ser Sí/No, Bien/Mal, casilla de
   "realizado" o texto. En las de Sí/No elegís qué respuesta indica un problema.
@@ -30,6 +35,8 @@ arma un reporte que **resalta lo que hay que atender**.
   - Muestra primero los **ítems a atender** (las respuestas que indican un problema) y,
     aparte, las casillas que quedaron sin responder.
   - Se puede **imprimir o guardar como PDF** (hoja A4) o **compartir** como texto.
+  - Si cargaste varias planillas, podés sacar el **PDF de una sola** para que no quede
+    larguísimo. El archivo sale con el nombre de la planilla y la fecha.
 - **Nombre y logo de tu empresa** en el encabezado del reporte.
 
 ## Cómo se usa

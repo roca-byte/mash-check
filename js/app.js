@@ -16,7 +16,8 @@
   //   edicion  = la PLANILLA que se está creando/editando en el constructor
   // Los cambios van al borrador y solo se copian al Store con Guardar; así Cancelar no deja
   // nada a medias.
-  const estado = { fecha: Store.hoy(), borrador: null, edicion: null };
+  // soloId = registro elegido para exportar solo (null = el reporte de todo el día).
+  const estado = { fecha: Store.hoy(), borrador: null, edicion: null, soloId: null };
 
   // Versión de la app en ESTE celular (se completa sola, ver mostrarVersion al final).
   let textoVersion = '';
@@ -53,6 +54,8 @@
   function pintarInicio() {
     estado.borrador = null;
     estado.edicion = null;
+    estado.soloId = null;
+    document.title = 'MASH Check'; // el reporte lo cambia para el nombre del PDF
     const registros = Store.registrosDelDia(estado.fecha);
     const planillas = Store.planillas();
 
@@ -288,10 +291,20 @@
   // REPORTE DEL DÍA Y RESPALDO
   // ====================================================================
 
+  // Registros que muestra el reporte: los del día o, si se eligió una sola planilla, solo esa.
+  function registrosDelReporte() {
+    const solo = estado.soloId && Store.obtener(estado.soloId);
+    return solo ? [solo] : Store.registrosDelDia(estado.fecha);
+  }
+
   function pintarReporte() {
     estado.borrador = null;
     estado.edicion = null;
-    const registros = Store.registrosDelDia(estado.fecha);
+    const registros = registrosDelReporte();
+    const solo = estado.soloId ? registros[0] : null;
+    // El título de la pestaña es el nombre que el celular propone al "Guardar como PDF":
+    // así el archivo sale con la fecha (y la planilla) en vez de "MASH Check.pdf".
+    document.title = nombrePDF(solo ? [solo.planilla.titulo, Report.resumenCabecera(solo)].filter(Boolean) : ['Reporte del día']);
     // .no-print: la barra de botones no sale en el papel/PDF (ver @media print en styles.css).
     vista.innerHTML =
       '<section class="no-print">' +
@@ -301,13 +314,36 @@
           '<button class="btn" data-act="compartir">Compartir resumen</button>' +
         '</div>' +
         '<p class="ayuda">Exportar PDF abre la ventana de impresión: elegí “Guardar como PDF”.</p>' +
+        (solo
+          ? '<p class="aviso-solo">Mostrando solo: <b>' + esc([solo.planilla.titulo, Report.resumenCabecera(solo)].filter(Boolean).join(' · ')) + '</b></p>' +
+            '<button class="btn chico" data-act="ver-todo">← Ver todo el día</button>'
+          : botonesSoloUna(registros)) +
       '</section>' +
       Report.html(estado.fecha, registros);
     window.scrollTo(0, 0);
   }
 
+  // Con varias planillas el PDF del día queda muy largo: un botón por registro para sacar
+  // el PDF de UNA sola (con su propio "Ítems a atender"). El reporte queda mostrando esa
+  // planilla hasta tocar "Ver todo el día": no se vuelve solo después de imprimir, porque en
+  // el celular el aviso de "terminó la impresión" llega antes de que se arme el PDF.
+  function botonesSoloUna(registros) {
+    if (registros.length < 2) return '';
+    return '<p class="ayuda">O exportá una sola planilla:</p><div class="solo-una">' +
+      registros.map((r) => {
+        const resumen = Report.resumenCabecera(r);
+        return '<button class="btn chico" data-act="imprimir-uno" data-id="' + esc(r.id) + '">' +
+          esc(r.planilla.titulo) + (resumen ? ' · ' + esc(resumen) : '') + '</button>';
+      }).join('') + '</div>';
+  }
+
+  // "MASH Control de Botiquines Producción 11-11-2026"
+  function nombrePDF(partes) {
+    return ['MASH'].concat(partes, estado.fecha.split('-').reverse().join('-')).join(' ');
+  }
+
   function compartirResumen() {
-    const texto = Report.texto(estado.fecha, Store.registrosDelDia(estado.fecha));
+    const texto = Report.texto(estado.fecha, registrosDelReporte());
     if (navigator.share) {
       // Abre el menú de compartir del celular (WhatsApp, mail...). Si se cancela, no pasa nada.
       navigator.share({ title: 'MASH Check', text: texto }).catch(() => {});
@@ -679,6 +715,8 @@
       case 'reporte': pintarReporte(); break;
       case 'volver': pintarInicio(); break;
       case 'imprimir': window.print(); break;
+      case 'imprimir-uno': estado.soloId = boton.dataset.id; pintarReporte(); window.print(); break;
+      case 'ver-todo': estado.soloId = null; pintarReporte(); break;
       case 'compartir': compartirResumen(); break;
       case 'respaldo-exportar': descargarRespaldo(); break;
       case 'respaldo-importar': document.getElementById('archivo-respaldo').click(); break;

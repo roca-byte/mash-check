@@ -30,13 +30,13 @@ Era un **SaaS multi-fábrica** para digitalizar planillas de Seguridad e Higiene
 
 **Las 3 planillas reales que traía de fábrica** (esto es lo único realmente útil para rescatar):
 
-1. **REG-04 — Control de Botiquines** (mensual): 16 elementos (guantes, gasas, yodo,
-   alcohol, ibuprofeno…) × 5 puestos (Puesto Uno, Producción, Calidad, Cocina, Logística A4),
+1. **Control de Botiquines** (mensual): 16 elementos (guantes, gasas, yodo,
+   alcohol, ibuprofeno…) × 5 puestos de la planta,
    cada celda Sí/No + observaciones. Firma del responsable.
-2. **REG-09 — Control de Tableros Eléctricos**: cabecera (fecha, sector, área,
+2. **Control de Tableros Eléctricos**: cabecera (fecha, sector, área,
    identificación, tipo) + 3 secciones: estado general, protecciones (Bien/Mal + acción +
    responsable) y trabajos a realizar (tilde "realizado"). Pie: controló, fecha, firma.
-3. **REG-05 — Control de Absorbentes**: por ítem, Disponible / Recargar (<50 %) /
+3. **Control de Absorbentes**: por ítem, Disponible / Recargar (<50 %) /
    Posee cartelería / Tapa / Limpio + observaciones. Firma del responsable.
 
 Tamaño: ~25 archivos, 5 scripts SQL, 8 pantallas, 3 librerías de CDN además de Supabase.

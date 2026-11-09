@@ -9,7 +9,8 @@
  */
 window.Marca = (() => {
   const KEY = 'mashCheck.marca.v1';
-  const BASE = { empresa: 'Empresa S.A.', logo: '' };
+  // Sin empresa cargada el reporte no inventa un nombre: muestra solo "Seguridad e Higiene".
+  const BASE = { empresa: '', logo: '' };
 
   let datos = { empresa: '', logo: null };
   try { datos = Object.assign(datos, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
