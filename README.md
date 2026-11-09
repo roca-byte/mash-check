@@ -30,6 +30,8 @@ arma un reporte que **resalta lo que hay que atender**.
   - Muestra primero los **ítems a atender** (las respuestas que indican un problema) y,
     aparte, las casillas que quedaron sin responder.
   - Se puede **imprimir o guardar como PDF** (hoja A4) o **compartir** como texto.
+  - Si cargaste varias planillas, podés sacar el **PDF de una sola** para que no quede
+    larguísimo. El archivo sale con el nombre de la planilla y la fecha.
 - **Nombre y logo de tu empresa** en el encabezado del reporte.
 
 ## Cómo se usa

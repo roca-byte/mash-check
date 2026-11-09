@@ -226,6 +226,9 @@ input:focus, select:focus, textarea:focus {
 /* ---- reporte (en pantalla) ---- */
 .barra-reporte { display: flex; gap: 8px; }
 .barra-reporte .btn { flex: 1; padding-left: 6px; padding-right: 6px; }
+.solo-una { display: grid; gap: 8px; margin-bottom: 4px; }
+.solo-una .btn { text-align: left; }
+.aviso-solo { margin: 6px 0; padding: 8px 10px; background: var(--verde-claro); border-radius: 8px; }
 .reporte {
   --verde: #0f5c6e; --verde-claro: #e2eff0; --borde: #d2dfe0; --gris: #5c7077;
   --mal: #b3261e; --bien: #1f8a4c;

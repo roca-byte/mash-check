@@ -80,6 +80,9 @@ La versión instalada se ve al pie de la pantalla principal (sale del nombre de 
 - Cada columna siNo tiene `problema` ('no' | 'si' | 'ninguno'): define cuál respuesta va en rojo y sube a "Ítems a atender". Sin definir → botones azul/naranja y no se juzga. bienMal: "Mal" siempre es problema.
 - Store.migrar() completa `problema` en planillas y registros viejos de las 3 planillas de fábrica (sin pisar lo elegido por el usuario).
 - Reporte: PDF = window.print() con @media print (A4); compartir = navigator.share con texto.
+  Con 2+ registros hay botones para exportar UNA sola planilla (`estado.soloId`): el reporte queda mostrando
+  esa hasta "Ver todo el día" (no se usa afterprint: en Android llega antes de armar el PDF). document.title
+  = nombre del PDF ("MASH <planilla> <dd-mm-aaaa>"); pintarInicio lo vuelve a "MASH Check".
   Marca como "para atender" los bienMal='mal' y los siNo que coinciden con `problema`; aparte lista las casillas Sí/No y Bien/Mal sin responder (los "check" no cuentan).
 - Respaldo: JSON con {app:'mash-check', version:1, datos}. Restaurar REEMPLAZA todo (guarda lo anterior
   en 'mashCheck.v1.anterior'). Un archivo de otra app se rechaza.

@@ -192,5 +192,5 @@ const Report = (() => {
     return lineas.join('\n');
   }
 
-  return { html, texto, esc };
+  return { html, texto, esc, resumenCabecera };
 })();
