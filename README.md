@@ -2,78 +2,64 @@
 
 [![QualityOS](https://img.shields.io/badge/QualityOS-calidad_en_planta-0f5c6e?style=flat-square)](https://github.com/roca-byte)
 
-PWA para cargar **planillas de control MASH** (Seguridad e Higiene) desde el celular y sacar un **reporte del día**. Pensada para uso personal en planta: botones grandes, pocos campos por pantalla y funcionamiento **sin conexión**.
+App para completar las **planillas de control de Seguridad e Higiene** (MASH) desde el
+celular y sacar un **reporte del día**. Pensada para usarse en planta: botones grandes, pocos
+campos por pantalla y funciona **sin conexión**.
 
-**App publicada:** https://roca-byte.github.io/mash-check/
+**Abrir la app:** https://roca-byte.github.io/mash-check/
 
-## Características
+## Para qué sirve
 
-- **Planillas de fábrica** (como datos, no como código):
+Reemplaza las planillas en papel de los controles periódicos (botiquines, tableros
+eléctricos, absorbentes…). Cargás cada control en el momento y al final del día la app te
+arma un reporte que **resalta lo que hay que atender**.
+
+## Qué podés hacer
+
+- **Planillas listas para usar**:
   - Control de Botiquines (REG-04)
   - Control de Tableros eléctricos (REG-09)
   - Control de Absorbentes (REG-05)
-- **Constructor de planillas**: crear, editar, duplicar y borrar planillas propias (cabecera, secciones, columnas e ítems).
-- **Tipos de columna**: Sí/No, Bien/Mal, casilla de realizado y texto. En las columnas Sí/No se define qué respuesta es el problema.
-- **Carga rápida**: formulario mobile first con botones de 48 px, usable con una mano y guantes.
-- **Registros del día**: lista, edición y borrado. Cada registro guarda una copia de la estructura de su planilla, así los registros viejos no cambian si después se edita la planilla.
+- **Armar tus propias planillas**: crear, editar, duplicar y borrar planillas con sus
+  secciones, columnas e ítems. Las columnas pueden ser Sí/No, Bien/Mal, casilla de
+  "realizado" o texto. En las de Sí/No elegís qué respuesta indica un problema.
+- **Carga rápida**, usable con una mano y guantes.
+- **Registros del día**: verlos, corregirlos o borrarlos. Si después cambiás una planilla,
+  los registros que ya cargaste no se modifican.
 - **Reporte del día**:
-  - Resalta los **ítems a atender** (respuestas problemáticas) y lista aparte las casillas sin responder.
-  - **Imprimir / PDF** (A4) o **compartir** como texto desde el celular.
-- **Backup JSON**: exportar e importar todos los datos (restaurar reemplaza todo y guarda lo anterior).
-- **Empresa y logo configurables**: en la pantalla de inicio se carga el nombre de la empresa y, opcionalmente, un logo. Se guardan solo en el dispositivo y se usan en el encabezado del reporte (si hay logo, reemplaza al nombre).
-- **Instalable y offline** gracias al service worker.
+  - Muestra primero los **ítems a atender** (las respuestas que indican un problema) y,
+    aparte, las casillas que quedaron sin responder.
+  - Se puede **imprimir o guardar como PDF** (hoja A4) o **compartir** como texto.
+- **Nombre y logo de tu empresa** en el encabezado del reporte.
 
-## Tecnologías
+## Cómo se usa
 
-HTML + CSS + JavaScript puro, **sin frameworks, sin npm y sin paso de build**. Scripts clásicos (sin módulos), un objeto global por archivo. Datos en `localStorage` (clave `mashCheck.v1`). Sin login ni backend.
+1. En la pantalla de inicio, cargá el nombre de la empresa y el logo (opcional) en
+   **Empresa**.
+2. Elegí la planilla y la fecha.
+3. Completá la cabecera y los ítems, y guardá.
+4. Revisá los registros del día (podés editarlos o borrarlos).
+5. Generá el **reporte del día** para imprimirlo, guardarlo como PDF o compartirlo.
 
-## Estructura
+## Instalarla en el celular
 
-```
-├── index.html              # Estructura mínima: barra superior + <main id="vista">
-├── manifest.json           # Datos de instalación PWA
-├── sw.js                   # Service worker (red primero, caché sin conexión)
-├── css/
-│   └── styles.css          # Estilos mobile first e impresión
-├── js/
-│   ├── planillas-base.js   # Las planillas de fábrica como datos (PLANILLAS_BASE)
-│   ├── store.js            # Capa de datos, constructor de planillas y respaldo (Store)
-│   ├── marca.js            # Empresa y logo configurables (Marca)
-│   ├── report.js           # Reporte del día y texto para compartir (Report)
-│   └── app.js              # Pantallas y eventos
-├── icons/                  # Íconos de la app
-├── GUIA-PUBLICACION.md     # Cómo publicar y actualizar en GitHub Pages
-├── DIAGNOSTICO.md          # Análisis previo y decisiones
-└── CLAUDE.md               # Contexto para agentes de IA
-```
+1. Abrí el link de la app.
+2. **Android (Chrome):** menú ⋮ → *Instalar app* (o *Agregar a la pantalla principal*).
+   **iPhone (Safari):** botón Compartir → *Agregar a inicio*.
+3. Listo: queda como una app más y, después de abrirla una vez, funciona sin señal.
 
-Orden de carga de los scripts: `planillas-base` → `store` → `marca` → `report` → `app`.
+## Tus datos
 
-## Uso
+- Todo lo que cargás queda **solo en tu dispositivo**. No hay cuentas ni servidor.
+- Si borrás los datos del navegador o cambiás de celular, se pierden. Con **Descargar
+  respaldo** guardás una copia de todo (registros y planillas) y con **Restaurar respaldo**
+  la recuperás. Hacelo cada tanto.
 
-Para probarla en local (con `file://` el service worker no funciona):
+## Licencia
 
-```bash
-python3 -m http.server 8000
-```
+Libre para usar, copiar y modificar ([MIT](LICENSE)). © 2026 Maximiliano Roca.
 
-Abrir `http://localhost:8000`. En el celular, abrir la dirección publicada e instalarla desde el navegador ("Agregar a pantalla de inicio").
+---
 
-Flujo de trabajo:
-
-1. En la pantalla de inicio, cargar el nombre de la empresa y el logo (opcional) en la sección **Empresa**.
-2. Elegir la planilla y la fecha.
-3. Completar cabecera e ítems → guardar.
-4. Revisar los registros del día (editar o borrar si hace falta).
-5. Generar el **reporte del día** → imprimir/PDF o compartir.
-
-## Publicación
-
-Se publica en GitHub Pages, en un subdirectorio, por eso **todas las rutas son relativas** (`./archivo`). Paso a paso en [GUIA-PUBLICACION.md](GUIA-PUBLICACION.md).
-
-## Notas de mantenimiento
-
-- Al cambiar cualquier archivo de la app, subir `VERSION` en `sw.js` y volver a subir también `sw.js`; si no, los celulares siguen con la versión vieja.
-- Si se agrega un archivo a la app, sumarlo también a `ARCHIVOS` en `sw.js`.
-- Las fechas se calculan en hora local con `Store.hoy()` (nunca `toISOString()`, que usa UTC y rompe el turno tarde).
-- Los datos viven en el dispositivo: hacer backup JSON con regularidad, porque borrar los datos del navegador los elimina.
+Parte de la suite [**QualityOS**](https://github.com/roca-byte) · Información técnica para
+modificarla: [DESARROLLO.md](DESARROLLO.md)
