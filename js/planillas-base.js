@@ -19,20 +19,23 @@
  * Hace falta porque el reporte no puede adivinarlo: en "Disponible" lo malo es el No, pero en
  * "Recargar (<50%)" lo malo es el Sí. (En bienMal lo malo siempre es "Mal".)
  *
+ * Los puestos, ubicaciones y códigos son GENÉRICOS (el repo es público): cada planta los ajusta
+ * con Editar o armando sus propias planillas.
+ *
  * La FECHA no está acá: todos los registros tienen siempre una fecha (el día elegido).
  * Tampoco hay firma dibujada: por ahora alcanza con el nombre escrito (ver DIAGNOSTICO.md).
  */
 const PLANILLAS_BASE = [
   {
     id: 'botiquines',
-    codigo: 'REG-04',
+    codigo: 'REG-01',
     titulo: 'Control de Botiquines',
     // En la planilla de papel los 5 puestos eran columnas (80 casillas juntas). Con guantes y
     // una mano eso es inmanejable, así que acá el PUESTO es un dato de la cabecera: se carga
     // un registro por puesto (16 ítems). El reporte los junta después.
     cabecera: [
       { key: 'puesto', label: 'Puesto', tipo: 'opciones',
-        opciones: ['Puesto Uno', 'Producción', 'Calidad', 'Cocina', 'Logística A4'] },
+        opciones: ['Portería', 'Producción', 'Calidad', 'Comedor', 'Depósito'] },
       { key: 'reviso', label: 'Revisó', tipo: 'texto' }
     ],
     secciones: [{
@@ -47,15 +50,15 @@ const PLANILLAS_BASE = [
         { key: 'r2', label: 'Gasas y vendas' },
         { key: 'r3', label: 'Apósitos' },
         { key: 'r4', label: 'Cinta adhesiva' },
-        { key: 'r5', label: 'Yodo (pervinox)' },
+        { key: 'r5', label: 'Yodo povidona' },
         { key: 'r6', label: 'Agua oxigenada' },
         { key: 'r7', label: 'Alcohol' },
         { key: 'r8', label: 'Jabón neutro (blanco)' },
         { key: 'r9', label: 'Alcohol en gel' },
-        { key: 'r10', label: 'Platsul (crema para quemaduras)' },
+        { key: 'r10', label: 'Crema para quemaduras' },
         { key: 'r11', label: 'Ibuprofeno' },
         { key: 'r12', label: 'Paracetamol' },
-        { key: 'r13', label: 'Irix colirio gotas' },
+        { key: 'r13', label: 'Colirio' },
         { key: 'r14', label: 'Algodón' },
         { key: 'r15', label: 'Solución fisiológica' },
         { key: 'r16', label: 'Curitas' }
@@ -67,7 +70,7 @@ const PLANILLAS_BASE = [
 
   {
     id: 'tableros',
-    codigo: 'REG-09',
+    codigo: 'REG-02',
     titulo: 'Control de Tableros Eléctricos',
     cabecera: [
       { key: 'sector', label: 'Sector', tipo: 'texto' },
@@ -135,7 +138,7 @@ const PLANILLAS_BASE = [
 
   {
     id: 'absorbentes',
-    codigo: 'REG-05',
+    codigo: 'REG-03',
     titulo: 'Control de Absorbentes',
     cabecera: [
       { key: 'reviso', label: 'Revisó', tipo: 'texto' }
@@ -152,29 +155,19 @@ const PLANILLAS_BASE = [
         { key: 'c6', label: 'Observaciones', tipo: 'texto' }
       ],
       filas: [
-        { key: 'r1', label: 'FCD' },
-        { key: 'r2', label: 'Calle Principal' },
-        { key: 'r3', label: 'Galpón principal: Solubles' },
-        { key: 'r4', label: 'Floables 1-2' },
-        { key: 'r5', label: 'Floables 3-4' },
-        { key: 'r6', label: 'Floables L5' },
-        { key: 'r7', label: 'Floables L6' },
-        { key: 'r8', label: 'Taller' },
+        { key: 'r1', label: 'Depósito de materias primas' },
+        { key: 'r2', label: 'Depósito de producto terminado' },
+        { key: 'r3', label: 'Línea de envasado 1' },
+        { key: 'r4', label: 'Línea de envasado 2' },
+        { key: 'r5', label: 'Línea de envasado 3' },
+        { key: 'r6', label: 'Sala de formulación' },
+        { key: 'r7', label: 'Laboratorio' },
+        { key: 'r8', label: 'Taller de mantenimiento' },
         { key: 'r9', label: 'Compactadora' },
-        { key: 'r10', label: 'Líneas de Envasado 4 y 5' },
-        { key: 'r11', label: 'Línea de paraquat' },
-        { key: 'r12', label: 'Aduana' },
-        { key: 'r13', label: 'Materia prima: salida de emergencia' },
-        { key: 'r14', label: 'Producto terminado' },
-        { key: 'r15', label: "Depósito de IBC's" },
-        { key: 'r16', label: 'Sector 2,4D' },
-        { key: 'r17', label: 'Línea de envasado ext. 2,4D' },
-        { key: 'r18', label: 'Caldera' },
-        { key: 'r19', label: 'Playón logístico' },
-        { key: 'r20', label: 'Galpón A3' },
-        { key: 'r21', label: 'HM' },
-        { key: 'r22', label: 'Evaporador' },
-        { key: 'r23', label: 'Galpón A4' }
+        { key: 'r10', label: 'Caldera' },
+        { key: 'r11', label: 'Playón de carga' },
+        { key: 'r12', label: 'Depósito de bidones e IBC' },
+        { key: 'r13', label: 'Salida de emergencia' }
       ]
     }],
     observaciones: false,

@@ -265,7 +265,7 @@ input:focus, select:focus, textarea:focus {
   body { background: #fff; font-size: 12px; }
   .barra-superior, .no-print, .barra-guardar { display: none !important; }
   main { padding: 0; max-width: none; }
-  .reporte { border: 0; border-radius: 0; padding: 0; margin: 0; }
+  .reporte { border: 0; border-radius: 0; padding: 0; margin: 0; box-shadow: none; } /* la sombra salía al pie de la última hoja */
   .r-scroll { overflow: visible; }
   .r-tabla { font-size: 10.5px; }
   .r-tabla tr, .r-tabla th { break-inside: avoid; }

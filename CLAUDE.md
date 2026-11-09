@@ -8,8 +8,8 @@ Contexto resumido para cualquier sesión futura. Detalle del análisis previo: `
 - App: PWA para cargar planillas de control MASH (Seguridad e Higiene) desde el celular y
   sacar un **reporte del día**. Uso personal, una sola persona.
 - **A CONFIRMAR (Fase 0 sin aprobar):** qué planillas exactamente, qué reporte y si "del día"
-  es la unidad correcta. La versión vieja tenía 3: Botiquines (REG-04), Tableros
-  eléctricos (REG-09) y Absorbentes (REG-05).
+  es la unidad correcta. La versión vieja tenía 3: Botiquines, Tableros
+  eléctricos y Absorbentes (en el repo van con códigos y ubicaciones genéricos: es público).
 - Reemplaza a la versión vieja con Supabase (`../mash-check`), que nunca funcionó online.
   No se arregla ni se reutiliza su código; solo se rescatan los datos de las planillas.
 

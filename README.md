@@ -17,9 +17,9 @@ arma un reporte que **resalta lo que hay que atender**.
 ## Qué podés hacer
 
 - **Planillas listas para usar**:
-  - Control de Botiquines (REG-04)
-  - Control de Tableros eléctricos (REG-09)
-  - Control de Absorbentes (REG-05)
+  - Control de Botiquines (REG-01)
+  - Control de Tableros eléctricos (REG-02)
+  - Control de Absorbentes (REG-03)
 - **Armar tus propias planillas**: crear, editar, duplicar y borrar planillas con sus
   secciones, columnas e ítems. Las columnas pueden ser Sí/No, Bien/Mal, casilla de
   "realizado" o texto. En las de Sí/No elegís qué respuesta indica un problema.
