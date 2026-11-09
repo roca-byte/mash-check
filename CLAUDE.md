@@ -72,6 +72,11 @@ GUIA-PUBLICACION.md   Paso a paso: GitHub Pages, instalar, actualizar, problemas
 Probado en Chromium real bajo /mash-check/: instala, abre offline, actualiza la caché y conserva los datos.
 La versión instalada se ve al pie de la pantalla principal (sale del nombre de la caché).
 
+## Guía y demo
+`docs/GUIA.md`, `docs/img/` y `docs/video/` se generan con `node tools/demo.js` y `node tools/video.js`
+(Playwright + ffmpeg + pdftoppm; ver DESARROLLO.md). Datos de ejemplo inventados en `tools/ejemplo.js`;
+no agregarlos a la app. Si cambia algo visible, regenerar y revisar que la guía siga diciendo lo que hace la app.
+
 ## Decisiones tomadas (respuestas por defecto, no confirmadas explícitamente)
 - Unidad del reporte: el día. Firma: nombre escrito. Sin importar Excel.
 - Botiquines: el PUESTO es un campo de cabecera (un registro por puesto, 16 ítems).

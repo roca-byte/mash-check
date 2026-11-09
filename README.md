@@ -6,7 +6,12 @@ App para completar las **planillas de control de Seguridad e Higiene** (MASH) de
 celular y sacar un **reporte del día**. Pensada para usarse en planta: botones grandes, pocos
 campos por pantalla y funciona **sin conexión**.
 
-**Abrir la app:** https://roca-byte.github.io/mash-check/
+**Abrir la app:** https://roca-byte.github.io/mash-check/ · [Video (2:30)](docs/video/mash-check-demo.mp4) · [Guía de uso](docs/GUIA.md)
+
+<p align="center"><img src="docs/img/demo.gif" alt="Recorrido: cargar un botiquín y ver el reporte del día" width="280"></p>
+
+> ¿Querés verla funcionando sin cargar nada? Mirá el [video](docs/video/mash-check-demo.mp4)
+> o la [guía con capturas](docs/GUIA.md): usan una empresa de ejemplo con datos inventados.
 
 ## Para qué sirve
 
