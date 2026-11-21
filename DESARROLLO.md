@@ -26,7 +26,7 @@ HTML + CSS + JavaScript puro, **sin frameworks, sin npm y sin paso de build**. S
 ├── docs/
 │   ├── GUIA.md             # Guía de uso con capturas
 │   ├── img/                # Capturas y demo.gif (las genera tools/demo.js)
-│   └── video/              # Video de demostración (lo genera tools/video.js)
+│   └── video/              # Videos (los generan tools/video.js y tools/video-planilla.js)
 ├── tools/                  # Scripts de la guía y el video (no los carga la app)
 ├── GUIA-PUBLICACION.md     # Cómo publicar y actualizar en GitHub Pages
 ├── DIAGNOSTICO.md          # Análisis previo y decisiones
@@ -58,15 +58,17 @@ Hace falta Node, Playwright, ffmpeg y poppler-utils (`pdftoppm`):
 npm i -g playwright && npx playwright install chromium
 export NODE_PATH=$(npm root -g)   # el repo no tiene package.json
 node tools/demo.js                # capturas y GIF (unos 20 s)
-node tools/video.js               # video (unos 3 min)
+node tools/video.js               # video general (unos 3 min)
+node tools/video-planilla.js      # video "armar una planilla desde cero" (unos 2 min)
 ```
 
 - `tools/servidor.js`: sirve la app desde el repo en un puerto libre.
 - `tools/ejemplo.js`: datos de ejemplo y cómo se cargan en el `localStorage` del navegador
   de la grabación. La app no los incluye: arranca vacía.
-- `tools/video.js` graba con capturas seguidas a resolución doble, hace el scroll paso a paso
-  desde JavaScript y descarta los cuadros que salen corridos (una marca fija de 3 px en la
-  esquina lo delata).
+- `tools/grabador.js`: lo común a los dos videos. Graba con capturas seguidas a resolución
+  doble, hace el scroll paso a paso desde JavaScript y descarta los cuadros que salen corridos
+  (una marca fija de 3 px en la esquina lo delata). `video.js` y `video-planilla.js` solo
+  tienen el guion de cada video.
 
 ## Publicación
 

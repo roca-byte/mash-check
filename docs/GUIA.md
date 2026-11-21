@@ -5,7 +5,8 @@ Paso a paso para quien la usa por primera vez. Las capturas son de una empresa d
 
 <p align="center"><img src="img/demo.gif" alt="Recorrido: cargar un botiquín y ver el reporte del día" width="300"></p>
 
-> También hay un [video de 2 minutos y medio](video/mash-check-demo.mp4) con todo el recorrido.
+> También hay un [video de 2 minutos y medio](video/mash-check-demo.mp4) con todo el recorrido y uno
+> corto de [cómo armar una planilla desde cero](video/crear-planilla.mp4) (control de matafuegos).
 
 **Contenido**
 
@@ -111,9 +112,9 @@ Tocá **+ Nueva planilla** (o **Editar** en una que ya existe):
 2. **Datos de arriba**: los campos de la cabecera (por ejemplo *Sector*), de texto libre o
    para elegir de una lista. "Revisó" ya viene puesto y recuerda tu nombre.
 3. **Secciones**: cada sección es una tabla.
-   - Los **ítems** son los renglones: lo que se revisa (por ejemplo *Bidón 1*, *Bidón 2*). Se
+   - Los **ítems** son los renglones: lo que se revisa (por ejemplo *Matafuego 1 - Depósito*, *Matafuego 2 - Taller*). Se
      escriben todos juntos en el cuadro **Ítems**, **uno por línea**.
-   - Las **columnas** son lo que se responde de cada ítem (por ejemplo *Estado*): Sí/No,
+   - Las **columnas** son lo que se responde de cada ítem (por ejemplo *Carga vigente* o *Precinto*): Sí/No,
      Bien/Mal, Tilde o Texto. Con **+ Agregar columna** sumás otra pregunta, **no** otro ítem.
    - En las columnas Sí/No elegís qué respuesta es un problema (*En el reporte, atender si
      responde*).
@@ -129,6 +130,8 @@ se crea hasta que la guardás). **Borrar** una planilla no borra los registros q
 con ella. Si borrás todas, aparece el botón para **restaurar las de fábrica**.
 
 <img src="img/10-editor.png" alt="Editor de planillas" width="300">
+
+Paso a paso en video: [cómo armar una planilla desde cero](video/crear-planilla.mp4).
 
 ## 9. Empresa, logo y copia de seguridad
 

@@ -452,7 +452,8 @@
       // Explicación fija: armando planillas desde cero se cargaban los ítems como columnas
       // (el botón "+ Agregar columna" parece el lugar para sumar cosas) y no se podía guardar.
       '<p class="ayuda">Cada sección es una tabla: los <b>ítems</b> son los renglones (lo que se revisa, ' +
-        'ej. Bidón 1, Bidón 2) y las <b>columnas</b> lo que se responde de cada ítem (ej. Estado: Sí/No). ' +
+        'ej. Matafuego 1 - Depósito, Matafuego 2 - Taller) y las <b>columnas</b> lo que se responde de cada ítem ' +
+        '(ej. Carga vigente: Sí/No). ' +
         'Los ítems se escriben en el cuadro de abajo, uno por línea.</p>' +
       e.secciones.map(htmlSeccionEditor).join('') +
       '<button class="btn" data-act="b-agrega" data-lista="secciones">+ Agregar sección</button>' +
@@ -521,7 +522,7 @@
   function htmlSeccionEditor(sec, si) {
     const columnas = sec.columnas.map((col, ci) =>
       '<div class="bloque interno">' +
-        '<input type="text" placeholder="Nombre de la columna (ej. Condición)" value="' + esc(col.label) + '"' +
+        '<input type="text" placeholder="Nombre de la columna (ej. Carga vigente)" value="' + esc(col.label) + '"' +
           atributosCampo('columnas', ci, 'label', si) + '>' +
         selectorTipo(TIPOS_COLUMNA, col.tipo, atributosCampo('columnas', ci, 'tipo', si)) +
         selectorProblema(col, ci, si) +
@@ -533,10 +534,10 @@
       '<input type="text" placeholder="Título de la sección" value="' + esc(sec.titulo) + '"' +
         atributosCampo('secciones', si, 'titulo') + '>' +
       botonesOrden('secciones', si) +
-      '<p class="celda-label">Columnas: qué se responde de cada ítem (ej. Estado, Vencimiento). No van acá los ítems.</p>' + columnas +
+      '<p class="celda-label">Columnas: qué se responde de cada ítem (ej. Carga vigente, Precinto). No van acá los ítems.</p>' + columnas +
       '<button class="btn chico" data-act="b-agrega" data-lista="columnas" data-s="' + si + '">+ Agregar columna</button>' +
       '<p class="celda-label">Ítems: lo que se revisa, uno por línea</p>' +
-      '<textarea rows="8" placeholder="Un ítem por línea, por ejemplo:&#10;Bidón 1&#10;Bidón 2&#10;Bidón 3"' +
+      '<textarea rows="8" placeholder="Un ítem por línea, por ejemplo:&#10;Matafuego 1 - Depósito&#10;Matafuego 2 - Línea 1&#10;Matafuego 3 - Taller"' +
         atributosCampo('secciones', si, 'filasTexto') + '>' + esc(sec.filasTexto) + '</textarea>' +
     '</div>';
   }
@@ -627,7 +628,7 @@
       const filas = lineas(s.filasTexto);
       if (!filas.length) {
         return { error: 'La sección "' + tituloSeccion + '" no tiene ítems.\n\nEscribilos en el cuadro ' +
-          '"Ítems", uno por línea. Las columnas son lo que se responde de cada ítem (ej. Estado), ' +
+          '"Ítems", uno por línea. Las columnas son lo que se responde de cada ítem (ej. Carga vigente), ' +
           'no los ítems.' };
       }
 
