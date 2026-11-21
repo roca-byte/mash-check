@@ -29,11 +29,14 @@ async function verPDF(h, solo, recorrido) {
   const total = +/Pages:\s+(\d+)/.exec(execFileSync('pdfinfo', [pdf]).toString())[1];
   const html = Array.from({ length: Math.min(total, 3) }, (_, i) => {
     const base = path.join(carpeta, 'pg' + i);
-    execFileSync('pdftoppm', ['-r', '110', '-jpeg', '-singlefile', '-f', String(i + 1), '-l', String(i + 1), pdf, base]);
+    execFileSync('pdftoppm', ['-r', '220', '-jpeg', '-singlefile', '-f', String(i + 1), '-l', String(i + 1), pdf, base]);
     return '<img src="data:image/jpeg;base64,' + fs.readFileSync(base + '.jpg').toString('base64') + '" alt="">';
   }).join('');
   await page.evaluate(h => window.vVisor(h), html);
   await espera(2000);
+  // Primero la hoja entera; después se acerca para que se pueda leer y se recorre.
+  await page.evaluate(() => window.vAcercar());
+  await espera(1600);
   for (const [y, ms] of recorrido) { await page.evaluate(v => window.vScroll(v, 900, document.getElementById('v-visor')), y); await espera(ms); }
   await page.evaluate(() => window.vVisor(null));
   await espera(600);
@@ -96,12 +99,12 @@ grabarVideo('mash-check-demo.mp4', async (h) => {
   // ── 4 · PDF del día y de una sola planilla ──
   await cartel('4 · Exportar PDF del día', 'En el celular: “Guardar como PDF”', 600);
   await tocar('[data-act="imprimir"]', 300);
-  await verPDF(h, null, [[560, 2400], [1150, 2200]]);
+  await verPDF(h, null, [[350, 2200], [850, 2200], [1950, 2400]]);
   await cartel('¿Muchas planillas? Sacá el PDF de una sola', 'Con sus propios ítems a atender', 600);
   await ver('.solo-una');
   await espera(1400);
   await tocar('[data-act="imprimir-uno"]:has-text("Tableros")', 900);
-  await verPDF(h, 'Tableros', [[420, 2600]]);
+  await verPDF(h, 'Tableros', [[350, 2400], [800, 2400]]);
   await cartel('El archivo sale con la planilla y la fecha', 'Ej.: MASH Control de Tableros Eléctricos … 11-11-2026', 2600);
   await tocar('[data-act="ver-todo"]', 900);
 

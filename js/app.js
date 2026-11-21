@@ -534,9 +534,9 @@
       '<input type="text" placeholder="Título de la sección" value="' + esc(sec.titulo) + '"' +
         atributosCampo('secciones', si, 'titulo') + '>' +
       botonesOrden('secciones', si) +
-      '<p class="celda-label">Columnas: qué se responde de cada ítem (ej. Carga vigente, Precinto). No van acá los ítems.</p>' + columnas +
+      '<p class="rotulo-editor">Columnas: qué se responde de cada ítem (ej. Carga vigente, Precinto). No van acá los ítems.</p>' + columnas +
       '<button class="btn chico" data-act="b-agrega" data-lista="columnas" data-s="' + si + '">+ Agregar columna</button>' +
-      '<p class="celda-label">Ítems: lo que se revisa, uno por línea</p>' +
+      '<p class="rotulo-editor">Ítems: lo que se revisa, uno por línea</p>' +
       '<textarea rows="8" placeholder="Un ítem por línea, por ejemplo:&#10;Matafuego 1 - Depósito&#10;Matafuego 2 - Línea 1&#10;Matafuego 3 - Taller"' +
         atributosCampo('secciones', si, 'filasTexto') + '>' + esc(sec.filasTexto) + '</textarea>' +
     '</div>';

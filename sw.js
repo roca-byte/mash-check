@@ -7,7 +7,7 @@
  *
  * Los DATOS (registros y planillas) no se guardan acá: viven en localStorage y no se tocan.
  */
-const VERSION = 'mash-check-v11';
+const VERSION = 'mash-check-v13';
 
 // Todo lo que la app necesita para arrancar sin red. RUTAS RELATIVAS: en GitHub Pages la app
 // está en /mash-check/ y una ruta como '/index.html' apuntaría a la raíz del dominio.
@@ -34,10 +34,15 @@ self.addEventListener('install', (e) => {
 });
 
 // ACTIVATE: borra las cachés de versiones anteriores y toma el control de las pestañas abiertas.
+// Las apps de la suite comparten dominio (roca-byte.github.io) y por eso comparten las cachés:
+// se borran SOLO las versiones viejas de esta app. Antes se borraba todo lo que no fuera la
+// versión actual, y al instalar o actualizar otra app de la suite esta dejaba de abrir sin señal.
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys()
-      .then((nombres) => Promise.all(nombres.filter((n) => n !== VERSION).map((n) => caches.delete(n))))
+      .then((nombres) => Promise.all(nombres
+        .filter((n) => n.startsWith('mash-check-') && n !== VERSION)
+        .map((n) => caches.delete(n))))
       .then(() => self.clients.claim())
   );
 });

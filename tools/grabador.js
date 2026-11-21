@@ -41,7 +41,11 @@ function preparar() {
     #v-placa b { color: #00c896; }
     #v-visor { position: fixed; inset: 0; z-index: 97; background: #3a4146; overflow-y: auto; padding: 120px 14px 40px; transition: opacity .5s; }
     #v-visor.oculto { opacity: 0; pointer-events: none; }
-    #v-visor img { display: block; width: 100%; margin: 0 0 14px; box-shadow: 0 4px 18px rgba(0,0,0,.4); }
+    #v-visor img { display: block; width: 100%; margin: 0 0 14px; box-shadow: 0 4px 18px rgba(0,0,0,.4); transition: width .8s; }
+    #v-visor { overflow-x: hidden; }
+    /* Acercar: la hoja A4 al ancho del celular no se lee. Al 190 % se ve el lado izquierdo
+       (ítem y respuesta) con letra de tamaño normal. */
+    #v-visor.cerca img { width: 190%; max-width: none; }
     #v-visor .burbuja { background: #d9fdd3; color: #111b21; border-radius: 10px 0 10px 10px; padding: 10px 12px; margin-left: 30px;
       white-space: pre-wrap; font: 14px/1.4 "Segoe UI", Roboto, sans-serif; box-shadow: 0 1px 2px rgba(0,0,0,.3); }
     .v-toque { position: fixed; z-index: 98; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%;
@@ -64,6 +68,7 @@ function preparar() {
   window.vPlaca = html => { if (html) placa.innerHTML = html; placa.className = html ? '' : 'oculto'; };
   // html: imágenes de páginas o la burbuja del resumen; null lo esconde
   window.vVisor = html => { if (html) { visor.innerHTML = html; visor.scrollTop = 0; } visor.className = html ? '' : 'oculto'; };
+  window.vAcercar = () => { visor.classList.add('cerca'); };
   // Scroll animado a mano (paso a paso desde JS): con el scroll suave del navegador, algunas
   // capturas salían con las capas corridas.
   window.vScroll = (destino, ms, caja) => new Promise(ok => {

@@ -157,6 +157,9 @@ input:focus, select:focus, textarea:focus {
 .celdas { display: flex; flex-wrap: wrap; gap: 10px; }
 .celda { flex: 1 1 140px; min-width: 0; }
 .celda-label { display: block; font-size: 13px; color: var(--gris); margin-bottom: 3px; }
+/* Rótulos de Columnas e Ítems en el editor: son la explicación clave (los ítems se cargaban
+   como columnas), así que van del tamaño del texto normal y no en gris chico. */
+.rotulo-editor { font-size: 15px; font-weight: 600; color: var(--texto); margin: 14px 0 6px; }
 
 .grupo { display: flex; gap: 6px; }
 .opc {
@@ -244,6 +247,13 @@ input:focus, select:focus, textarea:focus {
 .r-cab .r-logo { max-height: 56px; max-width: 150px; width: auto; object-fit: contain; }
 .r-cab p { margin: 2px 0 0; font-size: 13px; color: var(--gris); }
 .r-fecha { font-size: 20px; font-weight: 700; white-space: nowrap; }
+/* En el celular no entran logo, título y fecha en una fila: la fecha se salía por la derecha y
+   el título quedaba apretado en tres renglones. Logo y fecha arriba, título abajo a lo ancho.
+   Solo en pantalla: el PDF (A4) tiene lugar para la fila completa. */
+@media screen and (max-width: 520px) {
+  .r-cab { flex-wrap: wrap; align-items: center; }
+  .r-cab > div:not(.r-fecha) { order: 3; flex-basis: 100%; }
+}
 .r-datos { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 14px; margin: 6px 0; }
 .r-alerta { color: var(--mal); font-weight: 700; margin: 4px 0; }
 .r-ok { color: var(--bien); font-weight: 700; margin: 4px 0; }
