@@ -110,9 +110,16 @@ Tocá **+ Nueva planilla** (o **Editar** en una que ya existe):
 1. **Título** y **código** (el código es opcional).
 2. **Datos de arriba**: los campos de la cabecera (por ejemplo *Sector*), de texto libre o
    para elegir de una lista. "Revisó" ya viene puesto y recuerda tu nombre.
-3. **Secciones**: cada una con sus **columnas** (Sí/No, Bien/Mal, Tilde o Texto) y sus
-   **ítems, uno por línea**. En las columnas Sí/No elegís qué respuesta es un problema (*En el
-   reporte, atender si responde*).
+3. **Secciones**: cada sección es una tabla.
+   - Los **ítems** son los renglones: lo que se revisa (por ejemplo *Bidón 1*, *Bidón 2*). Se
+     escriben todos juntos en el cuadro **Ítems**, **uno por línea**.
+   - Las **columnas** son lo que se responde de cada ítem (por ejemplo *Estado*): Sí/No,
+     Bien/Mal, Tilde o Texto. Con **+ Agregar columna** sumás otra pregunta, **no** otro ítem.
+   - En las columnas Sí/No elegís qué respuesta es un problema (*En el reporte, atender si
+     responde*).
+
+   Si cargás los ítems como columnas y dejás vacío el cuadro de Ítems, la planilla no se guarda
+   y te avisa que la sección no tiene ítems.
 4. Si querés, un **cuadro de observaciones** al final y **datos del final** (por ejemplo
    *Controló*).
 5. **Guardar planilla**.

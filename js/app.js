@@ -448,7 +448,13 @@
       campoEditor('Título', 'titulo', e.titulo) +
       campoEditor('Código (opcional)', 'codigo', e.codigo) +
       '<h3>Datos de arriba</h3>' + htmlListaCampos('cabecera') +
-      '<h3>Secciones</h3>' + e.secciones.map(htmlSeccionEditor).join('') +
+      '<h3>Secciones</h3>' +
+      // Explicación fija: armando planillas desde cero se cargaban los ítems como columnas
+      // (el botón "+ Agregar columna" parece el lugar para sumar cosas) y no se podía guardar.
+      '<p class="ayuda">Cada sección es una tabla: los <b>ítems</b> son los renglones (lo que se revisa, ' +
+        'ej. Bidón 1, Bidón 2) y las <b>columnas</b> lo que se responde de cada ítem (ej. Estado: Sí/No). ' +
+        'Los ítems se escriben en el cuadro de abajo, uno por línea.</p>' +
+      e.secciones.map(htmlSeccionEditor).join('') +
       '<button class="btn" data-act="b-agrega" data-lista="secciones">+ Agregar sección</button>' +
       '<label class="chk"><input type="checkbox" data-bcampo="observaciones"' +
         (e.observaciones ? ' checked' : '') + '> Cuadro de observaciones al final</label>' +
@@ -527,10 +533,11 @@
       '<input type="text" placeholder="Título de la sección" value="' + esc(sec.titulo) + '"' +
         atributosCampo('secciones', si, 'titulo') + '>' +
       botonesOrden('secciones', si) +
-      '<p class="celda-label">Columnas (lo que se responde en cada ítem)</p>' + columnas +
+      '<p class="celda-label">Columnas: qué se responde de cada ítem (ej. Estado, Vencimiento). No van acá los ítems.</p>' + columnas +
       '<button class="btn chico" data-act="b-agrega" data-lista="columnas" data-s="' + si + '">+ Agregar columna</button>' +
-      '<p class="celda-label">Ítems (uno por línea)</p>' +
-      '<textarea rows="8"' + atributosCampo('secciones', si, 'filasTexto') + '>' + esc(sec.filasTexto) + '</textarea>' +
+      '<p class="celda-label">Ítems: lo que se revisa, uno por línea</p>' +
+      '<textarea rows="8" placeholder="Un ítem por línea, por ejemplo:&#10;Bidón 1&#10;Bidón 2&#10;Bidón 3"' +
+        atributosCampo('secciones', si, 'filasTexto') + '>' + esc(sec.filasTexto) + '</textarea>' +
     '</div>';
   }
 
@@ -618,7 +625,11 @@
       if (!s.columnas.length) return { error: 'La sección "' + tituloSeccion + '" necesita al menos una columna.' };
       if (s.columnas.some((c) => !c.label.trim())) return { error: 'Hay una columna sin nombre en "' + tituloSeccion + '".' };
       const filas = lineas(s.filasTexto);
-      if (!filas.length) return { error: 'La sección "' + tituloSeccion + '" necesita al menos un ítem.' };
+      if (!filas.length) {
+        return { error: 'La sección "' + tituloSeccion + '" no tiene ítems.\n\nEscribilos en el cuadro ' +
+          '"Ítems", uno por línea. Las columnas son lo que se responde de cada ítem (ej. Estado), ' +
+          'no los ítems.' };
+      }
 
       secciones.push({
         id: 's' + (si + 1),
