@@ -60,12 +60,20 @@ const REGISTROS = [
 // El registro que se carga en vivo en el GIF y el video (botiquín de Portería).
 const NUEVO = { puesto: 'Portería', faltan: ['r5', 'r9'], observacion: 'Vencido' };
 
-// La planilla que se arma en vivo con el constructor.
+// La planilla que se arma en vivo con el constructor. La guía y el video general usan las dos
+// primeras columnas; el video "crear una planilla desde cero" usa todo (tipos y datos de arriba).
+// columnas: [nombre, tipo, respuesta que es problema (solo Sí/No)]
 const PLANILLA_NUEVA = {
   titulo: 'Control de Matafuegos', codigo: 'REG-04',
-  seccion: 'Matafuegos', columnas: [['Carga vigente', 'no'], ['Precinto', 'no']],
-  items: 'Depósito de materias primas\nLínea de envasado 1\nLínea de envasado 2\nTaller de mantenimiento'
+  dato: { label: 'Sector', opciones: 'Producción\nDepósito\nMantenimiento' },
+  seccion: 'Matafuegos',
+  columnas: [['Carga vigente', 'siNo', 'no'], ['Precinto', 'siNo', 'no'],
+    ['Señalización', 'bienMal'], ['Observación', 'texto']],
+  items: 'Matafuego 1 - Depósito\nMatafuego 2 - Línea 1\nMatafuego 3 - Línea 2\nMatafuego 4 - Taller'
 };
+
+// Cómo se carga en el video la planilla recién armada: qué ítem tiene un problema.
+const CONTROL_MATAFUEGOS = { sector: 'Depósito', vencido: 'Matafuego 3 - Línea 2', observacion: 'Vence la carga' };
 
 /* ---------- Carga en el navegador ---------- */
 // Se ejecuta DENTRO de la página (page.evaluate): arma cada registro con la copia de su
@@ -100,4 +108,4 @@ async function cargarEnPagina(d) {
 
 const paquete = () => ({ logo: LOGO, nombre: NOMBRE, empresa: 'Planta Demo', registros: REGISTROS });
 
-module.exports = { HOY, AYER, NOMBRE, NUEVO, PLANILLA_NUEVA, cargarEnPagina, paquete };
+module.exports = { HOY, AYER, NOMBRE, NUEVO, PLANILLA_NUEVA, CONTROL_MATAFUEGOS, cargarEnPagina, paquete };
